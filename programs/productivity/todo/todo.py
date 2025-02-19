@@ -18,9 +18,12 @@ def addtodo():
 
 def whattodo():
     thingstoday = 0
-    with open('programs/productivity/todo/todo.txt') as f:
+    with open('programs/productivity/todo/todo.txt', "r+") as f:
         for i, line in enumerate(f):
-            print(line[3:4])
+            year = line[6:8]
+            month = line[0:2]
+            if (x.strftime("%m") > month or x.strftime("%y") > year):
+                continue
             if line[0:8] == x.strftime("%x"):
                 print(f"{Fore.GREEN}{i+1}: {line}{Style.RESET_ALL}")
                 thingstoday += 1
@@ -31,6 +34,3 @@ def whattodo():
     else:
         print(f"You have {Fore.BLUE}{thingstoday}{Style.RESET_ALL} thing to do today")
 
-# If the current month is greater than the month in the task, delete it from the todo cause its already done
-
-# or if current month but day is less than also delete it
