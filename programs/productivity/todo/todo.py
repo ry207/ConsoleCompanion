@@ -24,7 +24,7 @@ def whattodo():
             month = line[0:2]
             day = line[3:5]
             if (x.strftime("%m") > month or x.strftime("%y") > year):
-                i =- 1
+                i -= 1
                 continue
             if (day < x.strftime("%d") and month <= x.strftime("%m")):
                 i -=1
