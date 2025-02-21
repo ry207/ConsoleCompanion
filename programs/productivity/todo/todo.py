@@ -22,7 +22,12 @@ def whattodo():
         for i, line in enumerate(f):
             year = line[6:8]
             month = line[0:2]
+            day = line[3:5]
             if (x.strftime("%m") > month or x.strftime("%y") > year):
+                i =- 1
+                continue
+            if (day < x.strftime("%d") and month <= x.strftime("%m")):
+                i -=1
                 continue
             if line[0:8] == x.strftime("%x"):
                 print(f"{Fore.GREEN}{i+1}: {line}{Style.RESET_ALL}")
@@ -33,4 +38,3 @@ def whattodo():
         print("You have nothing to do today")
     else:
         print(f"You have {Fore.BLUE}{thingstoday}{Style.RESET_ALL} thing to do today")
-
