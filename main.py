@@ -1,11 +1,22 @@
 from programs.productivity.todo.todo import addtodo, whattodo
 from programs.productivity.newproject import newproj
 
-from programs.system import *
+from programs.system.windows.windows import showSystemInfoWindows
+from programs.system.Linux.linux import showSystemInfoLinux
+
+from programs.hacking.OSINT import runOSINT
+
 from programs.automation import *
-from programs.hacking import *
 from programs.executables import *
 from programs.misc import *
+
+from colorama import init as colorama_init
+from colorama import Fore
+from colorama import Style
+
+colorama_init()
+
+import platform
 
 def title():
     print(r"  _____                      _         _____                                  _             ")
@@ -35,24 +46,14 @@ def productivity():
         print("That was not an option...")
 
 def system():
-    print("Welcome to the system page!\nHere you are able to get system information on your computer. To start, select the type of computer you are on, then the function you would like to use.")
-    print("1. Windows")
-    print("2. Mac")
-    print("3. Ubuntu/Debian Linux")
-    print("4. Arch Linux")
-    func = int(input("Enter here: "))
-    if(func == 1):
-        print("Windows")
-    elif(func == 2):
-        print("Mac")
-    elif(func == 3):
-        print("Ubuntu/Debian Linux")
-    elif(func == 4):
-        print("Arch Linux")
-    else:
-        print("That was not an option...")
+    print(f"Welcome to the system page!\nHere you are able to get system information on your computer\n\n{Fore.BLUE}")
+    if "Windows" in platform.system():
+        showSystemInfoWindows()
+    elif "Linux" in platform.system():
+        showSystemInfoLinux()
+    print(f"{Style.RESET_ALL}")
 
-def hacking():
+def hacking():  
     print("Welcome to the hacking page!\nHere you are able to run different hacking scripts or commands. To start, select the function you would like to use.")
     print("1. Nmap")
     print("2. Ssh")
@@ -64,7 +65,7 @@ def hacking():
     elif(func == 2):
         print("Ssh")
     elif(func == 3):
-        print("OSINT")
+        runOSINT()
     elif(func == 4):
         print("Wifi Hacking")
     else:
@@ -116,13 +117,13 @@ def main():
     print("Welcome to the console companion! This application will let you complete many tasks all within the console.\nTo start select the function you would like to perform.\n\n")
     while(True):
         print("\n\n")
-        print("1. Productivity")
+        print(f"{Fore.GREEN}1. Productivity")
         print("2. System")
         print("3. Hacking")
         print("4. Automation")
         print("5. Executables")
-        print("6. Misc")
-        print("7. Exit")
+        print(f"6. Misc{Fore.RED}")
+        print(f"7. Exit{Style.RESET_ALL}")
         function = int(input("\n\nEnter class of function here: "))
         print("\n\n")
         if(function == 1):
